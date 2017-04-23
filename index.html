@@ -85,3 +85,74 @@ function regExpCheckPasport() {
 </script>
 
 </html>
+
+
+Укороченный вариант
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+
+<body>
+<form name="checkForm">
+    <label for="telefon">Ваш номер телефона:</label>
+    <br>
+    <input id="telefon" class="field" type="text" name="userTelefon" placeholder="Номер телефона">
+    <br>
+    <label for="email">Ваш Email:</label>
+    <br>
+    <input id="email" class="field" type="text" name="userEmail" placeholder="Email">
+    <br>
+    <label for="pasport">Серия и номер паспорта:</label>
+    <br>
+    <input id="pasport" class="field" type="text" name="userPasport" placeholder="Серия и номер паспорта">
+    <br>
+    <br>
+    <input class="btn" type="button" value="Проверить">
+</form>
+</body>
+
+<script>
+    
+var regColor = /#[0-9A-Fa-f]{6}/ig;  // HTML-цвет
+
+var regPositive = /\d{0,}\.{0,}\d{0,}/i;// Положительные и положительно-десятичные числа
+
+var regTime = /([01]?[0-9]|2[0-3])[:-][0-5][0-9]/ig; // Время
+
+var regChess = /[A-H][1-8]/ig; // Шахматная доска
+
+var regTelefonNumber = /^\+\d\(\d{3}\)\-\d{3}\-\d{2}\-\d{2}$/g; // Номер телефона
+
+var regEmail = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i; // Email
+
+var regPasport = /^([0-9]{4}\s{1}[0-9]{6})?$/g; // Паспорт
+
+var regExps = {
+    userTelefon: regTelefonNumber,
+    userEmail: regEmail,
+    userPasport: regPasport
+};
+
+function regExpCheck() {    
+var inputs = document.querySelectorAll('input[type="text"]');
+for (var i=0; i < inputs.length; i++) {
+    if ((regExps[inputs[i].name]).test(inputs[i].value)) {
+        inputs[i].style.background = "green";
+    } else { inputs[i].style.background = "red";
+  }
+};
+}
+     
+window.onload = function() {
+    var buttons = document.getElementsByClassName("btn");
+    for ( var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", regExpCheck);
+    }
+}    
+</script>
+
+</html>
